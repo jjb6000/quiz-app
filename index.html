@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <script defer src="data.js"></script>
+    <script defer src="app.js"></script>
     <title>Quiz</title>
 </head>
 
-<body>
+<body onload="initQuiz()">
 
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
@@ -21,37 +23,13 @@
         <section class="card-section">
             <div class="card main-card">
                 <img src="img/brain.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Frage</h5>
+                <div id="questionContainer" class="card-body">
 
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            Antwort 1
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            Antwort 2
-                        </div>
-                    </div>
-
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            Antwort 2
-                        </div>
-                    </div>
-
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            Antwort 3
-                        </div>
-                    </div>
-
-                    <div class="question-footer mt-4">
-                        <p><b>1</b> von <b>5</b> Fragen</p>
-                        <button type="button" class="btn btn-primary">Nächste Frage</button>
-                    </div>
+                <div class="question-footer mb-2 px-4">
+                    <p id="questionFooter"><b>1</b> von <b>5</b> Fragen</p>
+                    <button type="button" class="btn btn-primary">Nächste Frage</button>
                 </div>
             </div>
         </section>
