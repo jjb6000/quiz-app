@@ -20,6 +20,11 @@ body {
     width: 32rem;
 }
 
+.pointer:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
 
 .question-footer {
     display: flex;

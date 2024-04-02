@@ -1,9 +1,11 @@
 let currentQuestion = 0;
-let answeredQuestions = 0;
 let usersRightAnswers = 0;
 let questions = geo;
+let somethingSelected = false
+let selectedAnswer
 const qFooter = document.getElementById('questionFooter');
 const qContainer = document.getElementById('questionContainer');
+
 
 
 function changeCategory(jsonArray) {
@@ -15,13 +17,25 @@ function changeCategory(jsonArray) {
 
 
 function initQuiz() {
-    qFooter.innerHTML = generateQuestFooter(+currentQuestion +1, questions.length)
+    qFooter.innerHTML = generateQuestFooter(+currentQuestion + 1, questions.length)
     qContainer.innerHTML = generateQuestion(
-        questions[currentQuestion].question, 
-        questions[currentQuestion].answer_1, 
-        questions[currentQuestion].answer_2, 
+        questions[currentQuestion].question,
+        questions[currentQuestion].answer_1,
+        questions[currentQuestion].answer_2,
         questions[currentQuestion].answer_3,
         questions[currentQuestion].answer_4);
+}
+
+
+function nextQuestion() {
+    if (somethingSelected == false) {
+        alert('Wähle eine Antwort!')
+    } else {
+        compare(selectedAnswer);
+        setQuestionNumber(1);
+        checkEnd();
+        somethingSelected = false;
+    }
 }
 
 
@@ -29,15 +43,12 @@ function compare(answer) {
     if (answer == questions[currentQuestion].right_answer) {
         usersRightAnswers = +usersRightAnswers + 1;
     }
-    setQuestionNumber(1);
-    checkEnd()
 }
 
 
 function setQuestionNumber(add) {
     currentQuestion = +currentQuestion + add
 }
-
 
 
 function checkEnd() {
@@ -49,9 +60,26 @@ function checkEnd() {
 }
 
 
-function nextQuestion() {
-    setQuestionNumber(1);
-    checkEnd();
+function checkSelection(number, id) {
+    if (somethingSelected == false) {
+        selectAnAnswer(number, id);
+    } else {
+        unselectAnswers();
+        selectAnAnswer(number, id);
+    }
+}
+
+
+function selectAnAnswer(number, id) {
+    document.getElementById(id).style.backgroundColor = 'lightgreen';
+    somethingSelected = true;
+    selectedAnswer = number;
+}
+
+
+function unselectAnswers() {
+    initQuiz();
+    somethingSelected = false;
 }
 
 
@@ -66,47 +94,6 @@ function nextQuestion() {
 
 
 
-// ANCHOR html templates
-function generateQuestFooter(questionNumber, questionAmount) {
-    return /*html*/`
-        <b>${questionNumber}</b> von <b>${questionAmount}</b> Fragen
-    `
-}
 
 
-function generateQuestion(question, answer_1, answer_2, answer_3, answer_4) {
-    return /*html*/`
-        <h5 class="card-title mb-3">${question}</h5>
 
-        <div onclick="compare(1)" class="card mb-2">
-            <div class="card-body">
-                ${answer_1}
-            </div>
-        </div>
-
-        <div onclick="compare(2)" class="card mb-2">
-            <div class="card-body">
-                ${answer_2}
-            </div>
-        </div>
-
-        <div onclick="compare(3)" class="card mb-2">
-            <div class="card-body">
-                ${answer_3}
-            </div>
-        </div>
-
-        <div onclick="compare(4)" class="card mb-2">
-            <div class="card-body">
-                ${answer_4}
-            </div>
-        </div>
-    `;
-}
-
-
-function endScreen(usersRightAnswers, questionAmount) {
-    return /*html*/`
-        <h5 class="card-title mb-3"> Du hast ${usersRightAnswers} von ${questionAmount} Fragen richtig beantwortet!</h5>
-    `;
-}
