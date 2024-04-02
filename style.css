@@ -1,18 +1,20 @@
 body {
     min-height: 100vh;
     background-color: lightblue !important;
+}
+
+.navbar {
+    align-items: start;
+    justify-content: center;
 
 }
 
 .container {
     display: flex;
     justify-content: center;
+    padding: 40px 0;
 }
 
-
-.card-section {
-    padding: 40px;
-}
 
 .main-card {
     width: 32rem;

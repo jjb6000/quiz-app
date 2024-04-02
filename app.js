@@ -1,7 +1,18 @@
 let currentQuestion = 0;
+let answeredQuestions = 0;
 let usersRightAnswers = 0;
+let questions = geo;
 const qFooter = document.getElementById('questionFooter');
 const qContainer = document.getElementById('questionContainer');
+
+
+function changeCategory(jsonArray) {
+    currentQuestion = 0;
+    usersRightAnswers = 0;
+    questions = jsonArray;
+    initQuiz();
+}
+
 
 function initQuiz() {
     qFooter.innerHTML = generateQuestFooter(+currentQuestion +1, questions.length)
@@ -18,9 +29,15 @@ function compare(answer) {
     if (answer == questions[currentQuestion].right_answer) {
         usersRightAnswers = +usersRightAnswers + 1;
     }
-    currentQuestion = +currentQuestion + 1;
+    setQuestionNumber(1);
     checkEnd()
 }
+
+
+function setQuestionNumber(add) {
+    currentQuestion = +currentQuestion + add
+}
+
 
 
 function checkEnd() {
@@ -29,6 +46,12 @@ function checkEnd() {
     } else {
         initQuiz();
     }
+}
+
+
+function nextQuestion() {
+    setQuestionNumber(1);
+    checkEnd();
 }
 
 

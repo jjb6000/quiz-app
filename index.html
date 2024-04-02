@@ -13,13 +13,23 @@
 
 <body onload="initQuiz()">
 
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">QuizApp</span>
-        </div>
-    </nav>
-
     <div class="container">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">QuizApp</span>
+            </div>
+    
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a onclick="changeCategory(geo)" class="nav-link active" href="#" aria-current="page">Geographie</a>
+                </li>
+                <li class="nav-item">
+                  <a onclick="changeCategory(tech)" class="nav-link" href="#">IT</a>
+                </li>
+              </ul>
+        </nav>
+
+
         <section class="card-section">
             <div class="card main-card">
                 <img src="img/brain.jpg" class="card-img-top" alt="...">
@@ -29,7 +39,7 @@
 
                 <div class="question-footer mb-2 px-4">
                     <p id="questionFooter"><b>1</b> von <b>5</b> Fragen</p>
-                    <button type="button" class="btn btn-primary">Nächste Frage</button>
+                    <button onclick="nextQuestion()" type="button" class="btn btn-primary">Nächste Frage</button>
                 </div>
             </div>
         </section>
