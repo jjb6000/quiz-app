@@ -46,12 +46,17 @@ function setProgressBar() {
 
 
 function compare(answer) {
-    if (answer == questions[currentQuestion].right_answer) {
+    if (rightAnswerSelected(answer)) {
         usersRightAnswers++;
         AUDIO_Success.play();
     } else {
         AUDIO_Fail.play();
     }
+}
+
+
+function rightAnswerSelected(answer) {
+    return answer == questions[currentQuestion].right_answer;
 }
 
 
