@@ -3,6 +3,8 @@ let usersRightAnswers = 0;
 let questions = geo;
 let somethingSelected = false
 let selectedAnswer
+let AUDIO_Success = new Audio('audio/success.mp3');
+let AUDIO_Fail = new Audio('audio/fail.mp3');
 const qFooter = document.getElementById('questionFooter');
 const qContainer = document.getElementById('questionContainer');
 const nxtBtn = document.getElementById('nxtBtn');
@@ -46,18 +48,26 @@ function setProgressBar() {
 function compare(answer) {
     if (answer == questions[currentQuestion].right_answer) {
         usersRightAnswers++;
+        AUDIO_Success.play();
+    } else {
+        AUDIO_Fail.play();
     }
 }
 
 
 function checkEnd() {
-    if (currentQuestion == questions.length) {
+    if (lastQuestion()) {
         qContainer.innerHTML = endScreen(usersRightAnswers, questions.length);
         setEndBtn()
     } else {
         initQuiz();
         btnDisable(true)
     }
+}
+
+
+function lastQuestion() {
+    return currentQuestion == questions.length
 }
 
 
