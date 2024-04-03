@@ -54,9 +54,16 @@ function setQuestionNumber(add) {
 function checkEnd() {
     if (currentQuestion == questions.length) {
         qContainer.innerHTML = endScreen(usersRightAnswers, questions.length);
+        setEndBtn()
     } else {
         initQuiz();
     }
+}
+
+
+function setEndBtn() {
+    document.getElementById('nxtBtn').innerHTML = 'Zum Anfang'
+    document.getElementById('nxtBtn').setAttribute('onclick', 'location.reload()');
 }
 
 
