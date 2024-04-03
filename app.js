@@ -5,6 +5,7 @@ let somethingSelected = false
 let selectedAnswer
 const qFooter = document.getElementById('questionFooter');
 const qContainer = document.getElementById('questionContainer');
+const nxtBtn = document.getElementById('nxtBtn');
 
 
 
@@ -28,14 +29,10 @@ function initQuiz() {
 
 
 function nextQuestion() {
-    if (somethingSelected == false) {
-        alert('Wähle eine Antwort!')
-    } else {
-        compare(selectedAnswer);
-        setQuestionNumber(1);
-        checkEnd();
-        somethingSelected = false;
-    }
+    compare(selectedAnswer);
+    setQuestionNumber(1);
+    checkEnd();
+    somethingSelected = false;
 }
 
 
@@ -57,13 +54,14 @@ function checkEnd() {
         setEndBtn()
     } else {
         initQuiz();
+        btnDisable(true)
     }
 }
 
 
 function setEndBtn() {
-    document.getElementById('nxtBtn').innerHTML = 'Zum Anfang'
-    document.getElementById('nxtBtn').setAttribute('onclick', 'location.reload()');
+    nxtBtn.innerHTML = 'Zum Anfang'
+    nxtBtn.setAttribute('onclick', 'location.reload()');
 }
 
 
@@ -74,6 +72,12 @@ function checkSelection(number, id) {
         unselectAnswers();
         selectAnAnswer(number, id);
     }
+    btnDisable(false)
+}
+
+
+function btnDisable(boolean) {
+    nxtBtn.disabled = boolean;
 }
 
 
