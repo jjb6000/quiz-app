@@ -18,13 +18,14 @@ function changeCategory(jsonArray) {
 
 
 function initQuiz() {
-    qFooter.innerHTML = generateQuestFooter(+currentQuestion +1, questions.length)
+    qFooter.innerHTML = generateQuestFooter(+currentQuestion + 1, questions.length)
     qContainer.innerHTML = generateQuestion(
         questions[currentQuestion].question,
         questions[currentQuestion].answer_1,
         questions[currentQuestion].answer_2,
         questions[currentQuestion].answer_3,
         questions[currentQuestion].answer_4);
+    setProgressBar()
 }
 
 
@@ -33,6 +34,12 @@ function nextQuestion() {
     currentQuestion++
     checkEnd();
     somethingSelected = false;
+}
+
+
+function setProgressBar() {
+    let progress = Math.round((+currentQuestion + 1) * 100 / +questions.length);
+    document.getElementById('progress').style.width = progress + "%"
 }
 
 
