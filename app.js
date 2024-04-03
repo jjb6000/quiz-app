@@ -18,7 +18,7 @@ function changeCategory(jsonArray) {
 
 
 function initQuiz() {
-    qFooter.innerHTML = generateQuestFooter(+currentQuestion + 1, questions.length)
+    qFooter.innerHTML = generateQuestFooter(+currentQuestion +1, questions.length)
     qContainer.innerHTML = generateQuestion(
         questions[currentQuestion].question,
         questions[currentQuestion].answer_1,
@@ -30,7 +30,7 @@ function initQuiz() {
 
 function nextQuestion() {
     compare(selectedAnswer);
-    setQuestionNumber(1);
+    currentQuestion++
     checkEnd();
     somethingSelected = false;
 }
@@ -38,13 +38,8 @@ function nextQuestion() {
 
 function compare(answer) {
     if (answer == questions[currentQuestion].right_answer) {
-        usersRightAnswers = +usersRightAnswers + 1;
+        usersRightAnswers++;
     }
-}
-
-
-function setQuestionNumber(add) {
-    currentQuestion = +currentQuestion + add
 }
 
 
